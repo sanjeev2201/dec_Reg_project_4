@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>customer</title>
+</head>
+<body>
+    <h1>current time is:{{current_time}}</h1>
+    <h3>Customers list data</h3>
+    {% if messages %}
+<ul >
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    <table border="2">
+        <thead>
+            <tr>
+                <th >Customer_Id</th>
+                <th >Customer_name</th>
+                <th >email_Id</th>
+                <th >password</th>
+                <th >Contact_no</th>
+                <th >Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in customers %}
+                <tr>
+                    <td>{{ c.Customer_Id}}</td>
+                    <td>{{ c.Customer_name }}</td>
+                    <td>{{ c.email_Id }}</td>
+                    <td>{{ c.password }}</td>
+                    <td>{{ c.Contact_no}}</td>
+                    <td>
+                        <a href="{% url 'edit-customer' c.pk %}">Edit</a>
+                        <a href="{% url 'delete-customer' c.pk %}">Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <a href="{% url 'registration'  %}">Registration</a>
+    <a href="{% url 'logout'  %}">logout</a>
+
+</body>
+</html>
