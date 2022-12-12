@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
+    {% if messages %}
+<ul >
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
     <form action="" method="POST" novalidate>
         {% csrf_token%}
         <table>
@@ -14,5 +21,8 @@
         </table>
         <input type="submit" value="submit">
     </form>
+    <div><a href="{% url 'list_contact'  %}">customer list</a></div>
+    <div><a href="{% url 'login'  %}">login</a></div>
+    
 </body>
 </html>
